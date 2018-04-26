@@ -29,5 +29,9 @@
 
 /**
  * 第 3 天
- * 
+ * 用 JS 写出一个对象，使得
+ * obj.obj.obj.obj === obj
+ * 也就是说，不管出现多少次 .obj,都得到 obj
  */
+// let obj = {}
+// obj.obj = obj
