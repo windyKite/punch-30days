@@ -35,3 +35,16 @@
  */
 // let obj = {}
 // obj.obj = obj
+
+/**
+ * 第 4 天
+ * 写出一个函数 fn，使得 fn 满足一下条件：
+ * 1. fn() === fn
+ * 2. fn.fn === fn
+ */
+// function fn(){
+//   fn.fn = fn
+//   return fn
+// }
+// fn() === fn
+// fn.fn === fn
