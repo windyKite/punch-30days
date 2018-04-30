@@ -48,3 +48,24 @@
 // }
 // fn() === fn
 // fn.fn === fn
+
+/**
+ * 第 5 天
+ * 写出一个函数 fn,使得 fn 满足以下条件：
+ * 1. fn() 打印出 'a'
+ * 2. fn()() 打印出 'b'
+ * 3. fn()()() 打印出 'c
+ */
+// function fn(){
+//   let chr = 'a'
+//   setTimeout(()=>{
+//     console.log(chr)
+//   })
+
+//   return function(){
+//     chr = 'b'
+//     return function(){
+//       chr = 'c'
+//     }
+//   }
+// }
