@@ -69,3 +69,33 @@
 //     }
 //   }
 // }
+
+/**
+ * 第 6 天
+ * 写出一个函数 fn，使得 fn 满足以下条件
+ * fn() == 'a'
+ * fn()() == 'b'
+ * fn()()() == 'c'
+ */
+// 思路：类型自动转换机制对复杂类型会先调用valueOf()方法，使用valueOf()方法的返回值进行比较
+// function fn(){
+//   return a
+// } 
+// function a(){
+//   return b
+// }
+// a.valueOf = function(){
+//   return 'a'
+// }
+// function b(){
+//   return c
+// }
+// b.valueOf = function(){
+//   return 'b'
+// }
+// function c(){
+//   return 'c'
+// }
+// fn() == 'a'     // true
+// fn()() == 'b'   // true
+// fn()()() == 'c' // true 
