@@ -99,3 +99,75 @@
 // fn() == 'a'     // true
 // fn()() == 'b'   // true
 // fn()()() == 'c' // true 
+
+/**
+ * 第 7 天
+ * function exam(){
+ *   var score = Math.floor(Math.random()*101)
+ *   if(score >= 60){
+ *     console.log('及格，和凯丽坐到一起。')
+ *   } else{
+ *     console.log('不及格，继续考试')
+ *     setTimeout(exam,1000)
+ *   }
+ * }
+ * 
+ * exam()
+ * 对上述代码使用 Promise 进行改写，能用以下方式调用
+ * exam().then(score => {
+ *   console.log('及格，和凯丽坐到一起'，score)
+ * })
+ */
+// (1) exam 中递归判断函数，在 exam 函数内部解决判断
+// function exam(){
+//   return new Promise(function(resolve,reject){
+//     function fn(){
+//       var score = Math.floor(Math.random()*101)
+//       if( score >= 60){
+//         resolve(score)
+//       } else{
+//         console.log('不及格，继续考试') 
+//         setTimeout(() => {
+//           fn()
+//         }, 1000);
+//       }
+//     }
+//     fn()
+//   })
+// }
+// exam().then(score => {
+//   console.log('及格，和凯丽坐到一起', score)
+// })
+
+// (2) 递归 exam 函数，在 promise 调用链中解决判断，实现基础是 resolve() 的实参可以是一个 Promise 实例
+// function exam(){
+//   return new Promise(function(resolve,reject){
+//     var score = Math.floor(Math.random()*101)
+//     // 无论 score 结果如何，Promise实例都会 resolve，只不过接受的实参不同
+//     // resolve() 可以接受一个 Promise 实例作为实参，会直接返回该实例
+//     if(score >= 90){
+//       resolve(score)
+//     } else{
+//       setTimeout(() => {
+//         resolve(exam())
+//       }, 1000);
+//     }
+//   })
+// }
+// exam().then(score => {
+//   console.log('及格，和凯丽坐到一起', score)
+// })
+
+// (3) exam 内部解决判断问题 
+// function exam(){
+//   return new Promise(function(resolve,reject){
+//     var score = Math.floor(Math.random()*101)
+//     while(score < 60){
+//       score = Math.floor(Math.random()*101)
+//     }
+//     resolve(score)
+//   })
+// }
+// exam().then(score => {
+//   console.log('及格，和凯丽坐到一起', score)
+// })
