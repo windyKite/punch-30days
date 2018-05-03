@@ -171,3 +171,36 @@
 // exam().then(score => {
 //   console.log('及格，和凯丽坐到一起', score)
 // })
+
+/**
+ * 第 8 天，数组排序
+ * 写一个 byField 函数，实现数组按姓名、年纪、任意字段排序
+ * var users = [
+ *   {name: "John", age: 20, company: "Jirengu"},
+ *   {name: "Pete", age: 18, company: "Alibaba"},
+ *   {name: "Ann", age: 19, company: "Tencent"},
+ * ]
+ * users.sort(byField('company'))
+ * [
+ *   {name: "Pete", age: 18, company: "Alibaba"},
+ *   {name: "John", age: 20, company: "Jirengu"},
+ *   {name: "Ann", age: 19, company: "Tencent"},
+ * ]
+ */
+// function byField(field){
+//   return function(a,b){
+//     if(a[field] < b[field]){
+//       return -1
+//     }
+//     if(a[field] > b[field]){
+//       return 1
+//     }
+//   }
+// }
+// var users = [
+//   {name: "John", age: 20, company: "Jirengu"},
+//   {name: "Pete", age: 18, company: "Alibaba"},
+//   {name: "Ann", age: 19, company: "Tencent"},
+// ]
+
+// users.sort(byField('name'))
