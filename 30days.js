@@ -204,3 +204,117 @@
 // ]
 
 // users.sort(byField('name'))
+
+/**
+ * 第 9 天
+ * const obj = {a: 1, b: 2, c: 3}
+ * function select(obj, arr){
+ * 
+ * }
+ * select(obj,["a","c"])
+ * 输出 {a: 1, c: 3}
+ */
+// (1) ES5直接遍历
+// const obj = {a: 1, b: 2, c: 3}
+// function select(obj, arr){
+//   let result = {}
+//   for(let i = 0; i < arr.length;i++){
+//     result[arr[i]] = obj[arr[i]]
+//   }
+//   return result
+// }
+// select(obj,["a","c"])
+
+// (2) ES6 for...of遍历数组的值
+// const obj = {a: 1, b: 2, c: 3}
+// function select(obj,arr){
+//   let result = {}
+//   for(let value of arr){
+//     result[value] = obj[value]
+//   }
+//   return result
+// }
+// select(obj,["a","c"]) 
+
+// (3) ES5 forEach遍历
+// const obj = {a: 1, b: 2, c: 3}
+// function select(obj,arr){
+//   let result = {}
+//   arr.forEach((key,index)=>{
+//     result[key] = obj[key]
+//   })
+//   return result
+// }
+// select(obj,["a","c"]) 
+
+// (4) reduce 遍历
+// const obj = {a: 1, b: 2, c: 3}
+// function select(obj, arr){
+//   return arr.reduce((accumulator,currentValue)=>{
+//     accumulator[currentValue] = obj[currentValue]
+//     return accumulator
+//   },{})
+// }
+// select(obj,["a","c"]) 
+
+// (5) 遍历 obj 键
+// const obj = {a: 1, b: 2, c: 3}
+// function select(obj, arr){
+//   let result = {}
+//   Object.keys(obj).filter((key)=>{
+//     return arr.includes(key)
+//   }).map( value => {
+//     result[value] = obj[value]
+//   })
+//   return result
+// }
+// select(obj,["a","c"]) 
+
+
+// (6) JSON.stringify
+// JSON.stringify() 第二个参数可以是函数或者数组，为函数时，每个值都会经过函数处理。为数组时，则序列化数组中的属性名。
+// const obj = {a: 1, b: 2, c: 3}
+// function select(obj, arr){
+//   return JSON.parse(JSON.stringify(obj,arr))
+// }
+// select(obj,["a","c"])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1.function select(obj, arr) {
+  var obj = {}
+  arr.forEach((k,i) => obj[i] = arr[i])
+  return obj
+}
+2.function select(obj, arr) {
+    return arr.reduce((o, v) => {
+	o[v] = obj[v]
+	return o
+    }, {})
+}
+3.function select (obj, arr) {
+  const result = {}
+  Object.keys(obj).filter(k => arr.includes(k)).map(s => { result[s] = obj[s] })
+  return result 
+}
+4.const select = (obj, arr) => arr.reduce((ret, key) => Object.assign(ret, { [key]: obj[key] }), {})
+5.const select = (obj, arr) => JSON.parse(JSON.stringify(obj, arr))
