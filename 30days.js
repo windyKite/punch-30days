@@ -279,6 +279,14 @@
 // }
 // select(obj,["a","c"])
 
+// (7)
+// const obj = {a: 1, b: 2, c: 3}
+// function select(obj,arr){
+//   return arr.reduce((accumulator, key)=>{
+//     return Object.assign(accumulator, { [key]: obj[key]})
+//   },{})
+// }
+// select(obj,["a","c"])
 
 
 
@@ -299,22 +307,3 @@
 
 
 
-
-1.function select(obj, arr) {
-  var obj = {}
-  arr.forEach((k,i) => obj[i] = arr[i])
-  return obj
-}
-2.function select(obj, arr) {
-    return arr.reduce((o, v) => {
-	o[v] = obj[v]
-	return o
-    }, {})
-}
-3.function select (obj, arr) {
-  const result = {}
-  Object.keys(obj).filter(k => arr.includes(k)).map(s => { result[s] = obj[s] })
-  return result 
-}
-4.const select = (obj, arr) => arr.reduce((ret, key) => Object.assign(ret, { [key]: obj[key] }), {})
-5.const select = (obj, arr) => JSON.parse(JSON.stringify(obj, arr))
