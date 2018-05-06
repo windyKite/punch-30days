@@ -288,7 +288,41 @@
 // }
 // select(obj,["a","c"])
 
+/**
+ * 第 10 天
+ * 依次点击A、B按钮，发送ajax请求，将请求的数据依次渲染出来
+ * （B响应可能比A快，依然要先渲染A）
+ */
+buttonA.onclick = function(){
+  get('/a',function(responseText){
+    console.log(responseText)
+    input.value = responseText
+  })
+}
 
+let xhrQueue = []
+function get(url,callback){
+  let request = new XMLHttpRequest()
+  request.open('get', url)
+  request.send()
+  xhrQueue.push(request)
+  request.options.finished = false
+  request.onloadend = function(){
+    this.options.finished = true
+    checkQueue()
+  }
+
+  function checkQueue(){
+    let xhr = xhrQueue[0]
+    if(xhr && xhr.options.finished){
+      if(xhr.status === 200 || xhr.status === 304){
+        callback(xhr.responseText)
+      }
+      xhrQueue.shift()
+      xhr = xhrQueue[0]
+    }
+  }
+}
 
 
 
