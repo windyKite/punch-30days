@@ -293,41 +293,69 @@
  * 依次点击A、B按钮，发送ajax请求，将请求的数据依次渲染出来
  * （B响应可能比A快，依然要先渲染A）
  */
-buttonA.onclick = function(){
-  get('/a',function(responseText){
-    console.log(responseText)
-    input.value = responseText
-  })
-}
+// buttonA.onclick = function(){
+//   get('/a',function(responseText){
+//     console.log(responseText)
+//     input.value = responseText
+//   })
+// }
 
-let xhrQueue = []
-function get(url,callback){
-  let request = new XMLHttpRequest()
-  request.open('get', url)
-  request.send()
-  xhrQueue.push(request)
-  request.options.finished = false
-  request.onloadend = function(){
-    this.options.finished = true
-    checkQueue()
-  }
+// let xhrQueue = []
+// function get(url,callback){
+//   let request = new XMLHttpRequest()
+//   request.open('get', url)
+//   request.send()
+//   xhrQueue.push(request)
+//   request.options.finished = false
+//   request.onloadend = function(){
+//     this.options.finished = true
+//     checkQueue()
+//   }
 
-  function checkQueue(){
-    let xhr = xhrQueue[0]
-    if(xhr && xhr.options.finished){
-      if(xhr.status === 200 || xhr.status === 304){
-        callback(xhr.responseText)
-      }
-      xhrQueue.shift()
-      xhr = xhrQueue[0]
-    }
-  }
-}
+//   function checkQueue(){
+//     let xhr = xhrQueue[0]
+//     if(xhr && xhr.options.finished){
+//       if(xhr.status === 200 || xhr.status === 304){
+//         callback(xhr.responseText)
+//       }
+//       xhrQueue.shift()
+//       xhr = xhrQueue[0]
+//     }
+//   }
+// }
 
+/**
+ * 第 11 天
+ * 写一个 execTimes，用于测试一个函数执行一定次数的时长
+ * 如：execTimes(sort, 1000)('hello')表示：执行 sort 函数 1000 次，sort 的参数是 'hello'
+ * function execTimes(){
+ *   // 补全
+ * }
+ * function sort(str){
+ *   return str.split('').sort().join('')
+ * }
+ * // 执行 sort 1000 次，sort 的参数是 'hello'
+ * execTimes(sort,1000)('hello')
+ * // 输出: '执行1000次，耗时43ms'
+ */
+// function execTimes(fn,times){
+//   return (param)=>{
+//     let startTime = new Date().getTime()
+//     let count = 0
+//     while(count < times){
+//       fn(param)
+//       count++
+//     }
+//     let endTime = new Date().getTime()
+//     time = endTime - startTime
+//     console.log(`执行${times}次，耗时${time}ms`)
+//   }
+// }
 
-
-
-
+// function sort(str){
+//   return str.split('').sort().join('')
+// }
+// execTimes(sort,1000)('hello')
 
 
 
