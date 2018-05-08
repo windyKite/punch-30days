@@ -326,17 +326,36 @@
 
 /**
  * 第 11 天
- * 
+ * 写一个 execTimes，用于测试一个函数执行一定次数的时长
+ * 如：execTimes(sort, 1000)('hello')表示：执行 sort 函数 1000 次，sort 的参数是 'hello'
+ * function execTimes(){
+ *   // 补全
+ * }
+ * function sort(str){
+ *   return str.split('').sort().join('')
+ * }
+ * // 执行 sort 1000 次，sort 的参数是 'hello'
+ * execTimes(sort,1000)('hello')
+ * // 输出: '执行1000次，耗时43ms'
  */
+// function execTimes(fn,times){
+//   return (param)=>{
+//     let startTime = new Date().getTime()
+//     let count = 0
+//     while(count < times){
+//       fn(param)
+//       count++
+//     }
+//     let endTime = new Date().getTime()
+//     time = endTime - startTime
+//     console.log(`执行${times}次，耗时${time}ms`)
+//   }
+// }
 
-function isMatch(str1, str2){
-  return str1.split('').sort().join('') === str2.split('').sort().join('')
-}
-
-
-
-
-
+// function sort(str){
+//   return str.split('').sort().join('')
+// }
+// execTimes(sort,1000)('hello')
 
 
 
