@@ -357,10 +357,36 @@
 // }
 // execTimes(sort,1000)('hello')
 
+/**
+ * 第 12 天
+ * 用 JavaScript 实现一个方法，该方法能够判断两个字符串是否匹配，如：
+ * function isMatch(str1,str2){
+ *  // ...
+ * }
+ * isMatch('something','gnihtemos')  // true
+ * isMatch('aaa','aa')  // false
+ */
+// (1) 计数排序的思想，将 str1 的值放入一个对象，再检测 str2 的值属不属于这个对象
+// function isMatch(str1, str2){
+//   if(str1.length !== str2.length){
+//     return false
+//   }
+//   let template = {}
+//   for(let i = 0, len = str1.length;i < len;i++){
+//     template[str1[i]] = true
+//   }
+//   for(let i = 0,len= str2.length;i < len;i++){
+//     if(!template[str2[i]]){
+//       return false
+//     }
+//   }
+//   return true
+// }
 
-
-
-
+// (2) 将两个字符串转换成数组，排序之后再转换成字符串比较
+// function isMatch(str1, str2){
+//   return str1.split('').sort().join('') === str2.split('').sort().join('')
+// }
 
 
 
