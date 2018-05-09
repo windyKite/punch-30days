@@ -388,7 +388,62 @@
 //   return str1.split('').sort().join('') === str2.split('').sort().join('')
 // }
 
+/**
+ * 第 13 天，关于 this 的判断
+ * 以下代码输出什么？为什么？
+ */
+var app = {
+  fn1: function(){
+    console.log(this)
+  },
+  fn2: function(){
+    return function(){
+      console.log(this)
+    }
+  },
+  fn3: function(){
+    function fn(){
+      console.log(this)
+    }
+    fn()
+  },
+  fn4: function(){
+    return {
+      fn: function(){
+        console.log(this)
+      }
+    }
+  },
+  fn5(){
+    setTimeout(function(){
+      console.log(this)
+    },10)
+  },
+  fn6(){
+    setTimeout(() => {
+      console.log(this)
+    }, 20);
+  },
+  fn7(){
+    setTimeout((function(){
+      console.log(this)
+    }).bind(this),30)
+  },
+  fn8: ()=>{
+    setTimeout(()=>{
+      console.log(this)
+    },40)
+  }
+}
 
+app.fn1()   // app, app.fn1() === fn1.call(app)
+app.fn2()()  // Window, app.fn2()() === (app.fn2()).call(undefined) app.fn2() 是一个函数
+app.fn3()    // Window, app.fn3()内部执行了 fn.call(undefined)
+app.fn4().fn()  // app.fn4()   app.fn4()是一个对象，包含 fn 方法，app.fn4().fn() === fn.call(app.fn4())
+app.fn5()    // Window, setTimeout 里的 function 使用 fn.call(undefined)的调用方式
+app.fn6()    // app, 箭头函数没有自己的 this，箭头函数的 this 指向上一层函数的 this
+app.fn7()    // app, bind 手动绑定 this，将 app.fn7.call(app) 的 this 绑定了
+app.fn8()    // Window, fn8 是一个箭头函数，this 指向上一层，也就是 Window
 
 
 
