@@ -392,61 +392,108 @@
  * 第 13 天，关于 this 的判断
  * 以下代码输出什么？为什么？
  */
-var app = {
-  fn1: function(){
-    console.log(this)
-  },
-  fn2: function(){
-    return function(){
-      console.log(this)
-    }
-  },
-  fn3: function(){
-    function fn(){
-      console.log(this)
-    }
-    fn()
-  },
-  fn4: function(){
-    return {
-      fn: function(){
-        console.log(this)
-      }
-    }
-  },
-  fn5(){
-    setTimeout(function(){
-      console.log(this)
-    },10)
-  },
-  fn6(){
-    setTimeout(() => {
-      console.log(this)
-    }, 20);
-  },
-  fn7(){
-    setTimeout((function(){
-      console.log(this)
-    }).bind(this),30)
-  },
-  fn8: ()=>{
-    setTimeout(()=>{
-      console.log(this)
-    },40)
-  }
-}
+// var app = {
+//   fn1: function(){
+//     console.log(this)
+//   },
+//   fn2: function(){
+//     return function(){
+//       console.log(this)
+//     }
+//   },
+//   fn3: function(){
+//     function fn(){
+//       console.log(this)
+//     }
+//     fn()
+//   },
+//   fn4: function(){
+//     return {
+//       fn: function(){
+//         console.log(this)
+//       }
+//     }
+//   },
+//   fn5(){
+//     setTimeout(function(){
+//       console.log(this)
+//     },10)
+//   },
+//   fn6(){
+//     setTimeout(() => {
+//       console.log(this)
+//     }, 20);
+//   },
+//   fn7(){
+//     setTimeout((function(){
+//       console.log(this)
+//     }).bind(this),30)
+//   },
+//   fn8: ()=>{
+//     setTimeout(()=>{
+//       console.log(this)
+//     },40)
+//   }
+// }
 
-app.fn1()   // app, app.fn1() === fn1.call(app)
-app.fn2()()  // Window, app.fn2()() === (app.fn2()).call(undefined) app.fn2() 是一个函数
-app.fn3()    // Window, app.fn3()内部执行了 fn.call(undefined)
-app.fn4().fn()  // app.fn4()   app.fn4()是一个对象，包含 fn 方法，app.fn4().fn() === fn.call(app.fn4())
-app.fn5()    // Window, setTimeout 里的 function 使用 fn.call(undefined)的调用方式
-app.fn6()    // app, 箭头函数没有自己的 this，箭头函数的 this 指向上一层函数的 this
-app.fn7()    // app, bind 手动绑定 this，将 app.fn7.call(app) 的 this 绑定了
-app.fn8()    // Window, fn8 是一个箭头函数，this 指向上一层，也就是 Window
+// app.fn1()   // app, app.fn1() === fn1.call(app)
+// app.fn2()()  // Window, app.fn2()() === (app.fn2()).call(undefined) app.fn2() 是一个函数
+// app.fn3()    // Window, app.fn3()内部执行了 fn.call(undefined)
+// app.fn4().fn()  // app.fn4()   app.fn4()是一个对象，包含 fn 方法，app.fn4().fn() === fn.call(app.fn4())
+// app.fn5()    // Window, setTimeout 里的 function 使用 fn.call(undefined)的调用方式
+// app.fn6()    // app, 箭头函数没有自己的 this，箭头函数的 this 指向上一层函数的 this
+// app.fn7()    // app, bind 手动绑定 this，将 app.fn7.call(app) 的 this 绑定了
+// app.fn8()    // Window, fn8 是一个箭头函数，this 指向上一层，也就是 Window
 
+/**
+ * 第 14 关，以下代码中出现的所有 this 分别指代什么？默认已经引入jQuery
+ */
+// $('.child').on('click',function(){
+//   console.log(this)
+// })
 
+// $('.father').on('click','.child',function(){
+//   console.log(this)
+// })
 
+// $('.child')[0].onclick = function(){
+//   console.log(this)
+// }
+// // 事件监听函数里面的 this，默认指向触发事件的 node 节点,当回调函数是箭头函数时，this指向Window
+
+// var app = {
+//   init: function(){
+//     // 使用 app.init() 调用时，this 全部指向 app
+//     // this.$father === app.$father
+//     this.$father = $('.father')
+//     // this.$child === app.$child
+//     this.$child = $('.child')
+//     // this.bind() === app.bind()
+//     this.bind()
+//   },
+//   bind: function(){
+//     // 使用 app.bind() 调用时，this 指向 app
+//     // _this = this === _this = app
+//     var _this = this
+//     // this.sayHi === app.sayHi
+//     this.$father.on('click',this.sayHi)
+//     this.$child.on('click',function(){
+//       // _this === app,_this.sayHello() === app.sayHello()
+//       _this.sayHello()
+//     })
+//     this.$child.on('click',this.sayBye.bind(this))
+//   },
+//   sayHi: function(){
+//     console.log(this)   // 作为回调函数使用，this依然指向触发事件的 node 节点
+//   },
+//   sayHello: function(){
+//     console.log(this)  // 直接 app.sayHello()调用，this 指向 app
+//   },
+//   sayBye: function(){
+//     console.log(this) // bind() 绑定了 this 是 app
+//   }
+// }
+// app.init()
 
 
 
