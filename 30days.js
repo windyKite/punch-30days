@@ -357,39 +357,7 @@
 // }
 // execTimes(sort,1000)('hello')
 
-/**
- * 第 15 关
- * 封装一个 jsonp 方法，可以使用如下方式调用：
- * jsonp(url[,data][,callbackName])
- * url: 
- * 类型：String,请求 url
- * 
- * data:
- * 类型：PlainObject,参数对象
- * 
- * callbackName
- * 类型：String,传递给服务器的回调函数的key，默认是“callback”
- * 
- * 返回值：
- * Promise 对象
- */
 
-// function jsonp(url,data = {},callbackName = 'callback'){
-//   return new Promise(function(resolve, reject){
-//     let script = document.createElement('script')
-//     let query = Object.keys(data).map(key => `${key}=${data[key]}`).join('&')
-//     window.fn = data => resolve(data)
-//     script.src = `${url}?${callbackName}=fn&${query}`
-//     document.head.appendChild(script)
-//     script.addEventListener('error',()=>{reject('error')})
-//     document.head.removeChild(script)
-//   })
-// }
-
-// jsonp('http://photo.sina.cn/aj/index',{page: 1, cate: 'recommend'},'jsoncallback')
-//   .then(data => {
-//     console.log(data)
-//   })
 /*
  * 第 12 天
  * 用 JavaScript 实现一个方法，该方法能够判断两个字符串是否匹配，如：
@@ -528,5 +496,37 @@
 // }
 // app.init()
 
+/**
+ * 第 15 关
+ * 封装一个 jsonp 方法，可以使用如下方式调用：
+ * jsonp(url[,data][,callbackName])
+ * url: 
+ * 类型：String,请求 url
+ * 
+ * data:
+ * 类型：PlainObject,参数对象
+ * 
+ * callbackName
+ * 类型：String,传递给服务器的回调函数的key，默认是“callback”
+ * 
+ * 返回值：
+ * Promise 对象
+ */
 
+// function jsonp(url,data = {},callbackName = 'callback'){
+//   return new Promise(function(resolve, reject){
+//     let script = document.createElement('script')
+//     let query = Object.keys(data).map(key => `${key}=${data[key]}`).join('&')
+//     window.fn = data => resolve(data)
+//     script.src = `${url}?${callbackName}=fn&${query}`
+//     document.head.appendChild(script)
+//     script.addEventListener('error',()=>{reject('error')})
+//     document.head.removeChild(script)
+//   })
+// }
+
+// jsonp('http://photo.sina.cn/aj/index',{page: 1, cate: 'recommend'},'jsoncallback')
+//   .then(data => {
+//     console.log(data)
+//   })
 
