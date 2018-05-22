@@ -595,3 +595,30 @@ console.log(3)
  * 顺序： 1，2，3，5，7，6，4，8，9，10，11，12
  * 先执行宏任务，再执行该宏任务下的微任务，依次循环。
  */
+
+
+/**
+ * 第 19 关
+ * 给定整数 n 和 m ，写一个函数 dispatch(n,m)把 1~n 尽量平均地分成 m 个组
+ */
+function dispatch(n,m){
+  let result = []
+  let num = Math.floor(n / m)
+  let count = 0
+  let remainder = n % m
+  for(let i = 0; i < m;i++){
+    let arr = []
+    let countTemp = num
+    if(remainder > 0){
+      countTemp += 1 
+      remainder -= 1 
+    }
+    for(let i = 0; i < countTemp;i++){
+      count++
+      arr.push(count)
+    }
+    result.push(arr)
+  }
+  return result
+}
+dispatch(9,2)
